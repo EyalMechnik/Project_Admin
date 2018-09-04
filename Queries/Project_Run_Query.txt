@@ -1,0 +1,3 @@
+SELECT Business_ID, Combined_Business_ID, Business_Name, project_name, project_id
+FROM `como-bi.Data_Admin.Scheduler_System`
+Where is_run = 1

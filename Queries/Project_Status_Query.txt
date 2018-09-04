@@ -1,0 +1,12 @@
+select a.project_id,
+       a.project_name,
+       b. project_activity_status,
+       b.project_activity_datetime
+from `como-bi.Data_Admin.Project` as a
+left join (
+select project_id,project_name,project_activity_status,project_activity_datetime
+from(
+SELECT *,row_number() over (partition by project_name order by project_activity_datetime desc) as row_num
+FROM `como-bi.Data_Admin.Project_Admin_Status`
+)
+where row_num = 1 ) as b on a.project_id = b.project_id
